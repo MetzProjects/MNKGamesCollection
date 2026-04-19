@@ -20,6 +20,7 @@ This **collection of MNK-Games** is a Java console application for classic MNK g
 - Optional gravity mode
 - Optional bot opponent (Random moves)
 - Console-based board rendering
+- Language settings (English and German)
 - Input validation for smoother gameplay
 
 ### Available Game Modes
@@ -37,7 +38,7 @@ com.metzprojects.mnk
 ├── app         => application entry point
 ├── engine      => game flow and setup
 ├── logic       => game logic and win checking
-├── domain      => Board, Player, Symbols, GameType
+├── domain      => Board, Player, Symbols, GameType, MenuAction, Language
 └── ui          => console menu, input, output, texts
 ```
 ### Gameplay
@@ -58,7 +59,7 @@ The game then runs until one player wins or the board is full. After that, a new
 ### Technical Notes
 
 - Language: Java
-- Version: 1.0
+- Version: 1.1 - Language Update
 - Interface: Console / Terminal
 - Minimum board size: 3
 - Maximum board size: 20 
@@ -104,6 +105,7 @@ Diese **MNK-Spielesammlung** ist eine Java-Konsolenanwendung für klassische MNK
 - Optionaler Gravity-Modus
 - Optionaler Bot-Gegner (Zufällige Züge)
 - Konsolenbasierte Spielfeldanzeige
+- Spracheinstellungen (Englisch und Deutsch)
 - Eingabevalidierung für eine stabilere Benutzerführung
 
 ### Verfügbare Spielmodi
@@ -121,7 +123,7 @@ com.metzprojects.mnk
 ├── app         => Programmeinstieg
 ├── engine      => Spielablauf und Setup
 ├── logic       => Spiellogik und Gewinnerprüfung
-├── domain      => Board, Player, Symbols, GameType
+├── domain      => Board, Player, Symbols, GameType, MenuAction, Language
 └── ui          => Konsolenmenü, Eingabe, Ausgabe, Texte
 ```
 ### Spielablauf
@@ -142,7 +144,7 @@ Danach läuft das Spiel, bis ein Spieler gewinnt oder das Spielfeld voll ist. An
 ### Technische Hinweise
 
 - Programmiersprache: Java
-- Version: 1.0
+- Version: 1.1 - Sprach-Update
 - Benutzeroberfläche: Konsole / Terminal
 - Minimale Spielfeldgröße: 3
 - Maximale Spielfeldgröße: 20 

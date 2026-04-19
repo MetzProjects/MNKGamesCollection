@@ -80,7 +80,6 @@ The game then runs until one player wins or the board is full. After that, a new
 - Smarter bot logic
 - Additional unit tests
 - GUI version
-- Language settings
 - Save/load functionality
 
 ### License
@@ -165,7 +164,6 @@ Danach läuft das Spiel, bis ein Spieler gewinnt oder das Spielfeld voll ist. An
 - Verbesserte Bot-Logik 
 - Zusätzliche Unit-Tests
 - GUI-Version
-- Sprachauswahl
 - Spielstände speichern und laden
 
 ### Lizenz

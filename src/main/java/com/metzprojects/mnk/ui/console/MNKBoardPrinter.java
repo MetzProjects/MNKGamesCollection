@@ -4,9 +4,12 @@ import com.metzprojects.mnk.domain.Board;
 
 import com.metzprojects.mnk.domain.BoardStyle;
 
+import static com.metzprojects.mnk.ui.i18n.I18n.getCurrentLanguage;
+
 public final class MNKBoardPrinter {
 
-    private MNKBoardPrinter() {} //prevents instantiation
+    private MNKBoardPrinter() {
+    }
 
     private static final String SPACE = "      ";
 
@@ -32,10 +35,10 @@ public final class MNKBoardPrinter {
     private static void printUtf8Board(Board board, boolean gravity) {
         final int rows = board.getRows();
         final int cols = board.getColumns();
-        System.out.print("\nCOL > ");
+        System.out.print("\n" + getCurrentLanguage().column() + " > ");
         for (int i = 0; i <= cols; i++) System.out.print(i < cols ? num(i) : "\n");
 
-        System.out.println((gravity ? SPACE : "ROW v ") + "╔" + "═════╦".repeat(cols - 1) + "═════╗");
+        System.out.println((gravity ? SPACE : getCurrentLanguage().row() + " v ") + "╔" + "═════╦".repeat(cols - 1) + "═════╗");
 
         for (int i = 0; i < rows; i++) {
             System.out.print((gravity ? SPACE : num(i)) + "║");
@@ -49,43 +52,42 @@ public final class MNKBoardPrinter {
 
     //ASCII Board
     private static void printAsciiBoard(Board board, boolean gravity) {
-    final int rows = board.getRows();
-    final int cols = board.getColumns();
+        final int rows = board.getRows();
+        final int cols = board.getColumns();
 
-    System.out.print("\nCOL > ");
-    for (int i = 0; i < cols; i++) {
-        System.out.print(num(i));
-    }
-    System.out.println();
-
-    System.out.print((gravity ? SPACE : "ROW v ") + "+");
-    for (int c = 0; c < cols; c++) {
-        System.out.print("-----");
-        System.out.print(c < cols - 1 ? "+" : "+\n");
-    }
-
-    for (int i = 0; i < rows; i++) {
-        System.out.print((gravity ? SPACE : num(i)) + "|");
-        for (int j = 0; j < cols; j++) {
-            System.out.print(cell(board, i, j) + "|");
+        System.out.print("\n" + getCurrentLanguage().column() + " > ");
+        for (int i = 0; i < cols; i++) {
+            System.out.print(num(i));
         }
         System.out.println();
 
-        if (i < rows - 1) {
-            System.out.print(SPACE + "+");
-            for (int c = 0; c < cols; c++) {
-                System.out.print("-----");
-                System.out.print(c < cols - 1 ? "+" : "+\n");
+        System.out.print((gravity ? SPACE : getCurrentLanguage().row() + " v ") + "+");
+        for (int c = 0; c < cols; c++) {
+            System.out.print("-----");
+            System.out.print(c < cols - 1 ? "+" : "+\n");
+        }
+
+        for (int i = 0; i < rows; i++) {
+            System.out.print((gravity ? SPACE : num(i)) + "|");
+            for (int j = 0; j < cols; j++) {
+                System.out.print(cell(board, i, j) + "|");
+            }
+            System.out.println();
+
+            if (i < rows - 1) {
+                System.out.print(SPACE + "+");
+                for (int c = 0; c < cols; c++) {
+                    System.out.print("-----");
+                    System.out.print(c < cols - 1 ? "+" : "+\n");
+                }
             }
         }
+        System.out.print(SPACE + "+");
+        for (int c = 0; c < cols; c++) {
+            System.out.print("-----");
+            System.out.print(c < cols - 1 ? "+" : "+\n");
+        }
     }
-    System.out.print(SPACE + "+");
-    for (int c = 0; c < cols; c++) {
-        System.out.print("-----");
-        System.out.print(c < cols - 1 ? "+" : "+\n");
-    }
-}
-
 
 
 }

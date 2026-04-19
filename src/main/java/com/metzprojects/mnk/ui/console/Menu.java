@@ -4,28 +4,49 @@ import com.metzprojects.mnk.domain.GameType;
 
 import java.util.Scanner;
 
-import static com.metzprojects.mnk.ui.i18n.English.*;
+import static com.metzprojects.mnk.ui.i18n.I18n.getCurrentLanguage;
 
 import com.metzprojects.mnk.domain.BoardStyle;
+import com.metzprojects.mnk.domain.Language;
+import com.metzprojects.mnk.domain.MenuAction;
 
 public final class Menu {
 
-    private Menu() {} //prevents instantiation
+    private Menu() {
+    }
 
-    public static GameType getMNKGameType(Scanner sc) {
+    public static Object getMenuChoice(Scanner sc) {
         final GameType[] games = GameType.values();
+        final MenuAction[] actions = MenuAction.values();
+
         final StringBuilder menuText = new StringBuilder();
 
-        menuText.append("\n").append(AVAILABILITY_TEXT).append("\n\n");
-        for (int i = 0; i < games.length; i++) {
-            menuText.append(i + 1).append(") ").append(games[i].describe()).append("\n");
+        menuText.append("\n").append(getCurrentLanguage().availabilityText()).append("\n\n");
+
+        int index = 1;
+
+        for (GameType game : games) {
+            menuText.append(index++).append(getCurrentLanguage().listBracket()).append(game.describe()).append("\n");
         }
-        int choice = Input.getNumber(menuText + PROMPT_GAMETYPE, 1, games.length, sc);
-        return games[choice - 1];
+        for (MenuAction action : actions) {
+            menuText.append(index++).append(getCurrentLanguage().listBracket()).append(action.label()).append("\n");
+        }
+
+        int choice = Input.getNumber(menuText + getCurrentLanguage().promptGameType(), 1, games.length + actions.length, sc);
+
+        if (choice <= games.length) {
+            return games[choice - 1];
+        }
+        return actions[choice - games.length - 1];
     }
 
     public static BoardStyle getBoardStyle(Scanner sc) {
-        int choice = Input.getNumber(PROMPT_BOARD_STYLE, 1, 2, sc);
-        return choice == 1 ? BoardStyle.UTF8 : BoardStyle.ASCII;
+        int choice = Input.getNumber(getCurrentLanguage().promptBoardStyle(), 1, 2, sc);
+        return choice == 1 ? BoardStyle.UNICODE : BoardStyle.ASCII;
+    }
+
+    public static Language getLanguage(Scanner sc) {
+        int choice = Input.getNumber(getCurrentLanguage().promptLanguage(), 1, 2, sc);
+        return choice == 1 ? Language.ENGLISH : Language.GERMAN;
     }
 }

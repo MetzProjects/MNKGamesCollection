@@ -1,7 +1,7 @@
 package com.metzprojects.mnk.domain;
 
 public enum BoardStyle {
-    UTF8,
+    UNICODE,
     ASCII
 }
 

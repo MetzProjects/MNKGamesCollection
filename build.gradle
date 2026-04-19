@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.metzprojects'
-version = '1.0'
+version = 'v1.1 - Language Update'
 
 repositories {
     mavenCentral()

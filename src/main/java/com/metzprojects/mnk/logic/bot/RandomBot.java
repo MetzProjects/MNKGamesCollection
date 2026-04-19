@@ -9,7 +9,8 @@ import static com.metzprojects.mnk.logic.GameLogic.*;
 
 public final class RandomBot {
 
-    private RandomBot(){} //prevents instantiation
+    private RandomBot() {
+    }
 
     public static void makeRandomMove(Board board, boolean gravity) {
         int row, col;

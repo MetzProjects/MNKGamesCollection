@@ -4,12 +4,13 @@ import com.metzprojects.mnk.domain.Board;
 import com.metzprojects.mnk.domain.Player;
 import com.metzprojects.mnk.domain.Symbols;
 
-import static com.metzprojects.mnk.ui.i18n.English.*;
+import static com.metzprojects.mnk.ui.i18n.I18n.getCurrentLanguage;
 
 
 public class GameLogic {
 
-    private GameLogic() {} //prevents instantiation
+    private GameLogic() {
+    }
 
     public static boolean isBoardFull(Board board) {
         for (int r = 0; r < board.getRows(); r++) {
@@ -73,11 +74,11 @@ public class GameLogic {
 
     public static void showGameState(char winner, boolean full, Player player) {
         if (winner != Symbols.EMPTY) {
-            System.out.printf(GAME_STATE_WIN, winner);
+            System.out.printf(getCurrentLanguage().gameStateWin(), winner);
         } else if (full) {
-            System.out.print(GAME_STATE_TIE);
+            System.out.print(getCurrentLanguage().gameStateTie());
         } else {
-            System.out.printf(GAME_STATE_NEXT, player.switchPlayer().getIcon());
+            System.out.printf(getCurrentLanguage().gameStateNext(), player.switchPlayer().getIcon());
         }
     }
 }

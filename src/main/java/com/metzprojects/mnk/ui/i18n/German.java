@@ -1,45 +1,45 @@
 package com.metzprojects.mnk.ui.i18n;
 
-public final class English implements Lang {
+public final class German implements Lang {
 
     //PROMPTS
     @Override
     public String promptGameType() {
-        return "Please select which game you'd like to play:";
+        return "Bitte wähle ein Spiel aus:";
     }
 
     @Override
     public String promptSizeRows() {
-        return "Please specify how many rows the board should have:";
+        return "Wie viele Zeilen sollte das Spielfeld haben:";
     }
 
     @Override
     public String promptSizeCols() {
-        return "Please specify how many columns the board should have:";
+        return "Wie viele Spalten sollte das Spielfeld haben:";
     }
 
     @Override
     public String promptReqToWin() {
-        return "Please specify how many of their symbols each player is required to place in a row for a win:";
+        return "Wie viele Symbole muss ein Spieler in eine Reihe setzen, um zu gewinnen:";
     }
 
     @Override
     public String promptRow() {
-        return "Please choose a row: ";
+        return "Bitte wähle eine Zeile aus: ";
     }
 
     @Override
     public String promptCol() {
-        return "Please choose a column: ";
+        return "Bitte wähle eine Spalte aus: ";
     }
 
     @Override
     public String promptLanguage() {
         return """
                 
-                Select language:
-                1) English (Englisch)
-                2) German (Deutsch)
+                Wähle eine Sprache aus:
+                1) Englisch (English)
+                2) Deutsch (German)
                 """;
     }
 
@@ -47,16 +47,16 @@ public final class English implements Lang {
     public String promptBoardStyle() {
         return """
                 
-                Choose board style:
-                1) Unicode (Default - Recommended)
-                2) ASCII (Choose this if you experience problems with displaying Unicode)
+                Wähle einen Spielfeld-Stil aus:
+                1) Unicode (Standard - Empfohlen)
+                2) ASCII (Empfohlen bei Problemen mit Unicode)
                 """;
     }
 
     //[Y/N] OPTIONS
     @Override
     public String yes() {
-        return "Y";
+        return "J";
     }
 
     @Override
@@ -71,80 +71,80 @@ public final class English implements Lang {
 
     @Override
     public String promptPlayBot() {
-        return "Would you like to play against a bot?";
+        return "Möchtest du gegen einen Bot spielen?";
     }
 
     @Override
     public String promptPlayGravity() {
-        return "Would you like to play with gravity enabled?";
+        return "Möchtest du mit Gravitation spielen?";
     }
 
     @Override
     public String promptPlayAgain() {
-        return "Would you like to play again?";
+        return "Möchtest du nochmal spielen?";
     }
 
     //ERROR MESSAGES
     @Override
     public String errorInputChoice() {
-        return "Error: Please choose between '%s' and '%s'!\n";
+        return "Fehler: Bitte wähle zwischen '%s' und '%s' aus!\n";
     }
 
     @Override
     public String errorInputType() {
-        return "Error: Input has to be a %s!\n";
+        return "Fehler: Eingabe muss eine %s sein!\n";
     }
 
     @Override
     public String errorOutOfRange() {
-        return "Error: Please enter a number between %d and %d!\n";
+        return "Fehler: Eingabe muss eine Zahl zwischen %d und %d sein!\n";
     }
 
     @Override
     public String errorCellTaken() {
-        return "Error: The chosen cell has already been claimed!";
+        return "Fehler: Gewähltes Feld ist bereits besetzt!";
     }
 
     @Override
     public String errorColFull() {
-        return "Error: The chosen column is already full!";
+        return "Fehler: Spalte ist bereits voll!";
     }
 
     //GAME STATES
     @Override
     public String gameStateNext() {
-        return "Player %c is next!\n";
+        return "Spieler %c ist am Zug!\n";
     }
 
     @Override
     public String gameStateWin() {
-        return "Player %c wins!\n";
+        return "Spieler %c hat gewonnen!\n";
     }
 
     @Override
     public String gameStateTie() {
-        return "It's a tie!\n";
+        return "Unentschieden!\n";
     }
 
     //GAME MESSAGES
     @Override
     public String gameStart() {
-        return "Player %c begins!\n";
+        return "Spieler %c ist als erstes dran!\n";
     }
 
     @Override
     public String gameRestarting() {
-        return "Starting a new game!";
+        return "Starte neues Spiel!";
     }
 
     @Override
     public String gameExit() {
-        return "Returning to Menu!";
+        return "Kehre zum Menü zurück!";
     }
 
     @Override
     public String gameGoodbye() {
-        return "Terminating program...";
+        return "Programm wird beendet...";
     }
 
     //MENU OPTIONS
@@ -160,59 +160,59 @@ public final class English implements Lang {
 
     @Override
     public String gameModeConnectFour() {
-        return "Connect Four";
+        return "Vier-Gewinnt";
     }
 
     @Override
     public String gameModeCustom() {
-        return "Custom Game";
+        return "Eigenes Spiel";
     }
 
     @Override
     public String settingsBoardText() {
-        return "Board Appearance";
+        return "Spielfeld-Optionen";
     }
 
     @Override
     public String language() {
-        return "Language";
+        return "Sprachauswahl";
     }
 
     @Override
     public String exitGame() {
-        return "Exit";
+        return "Beenden";
     }
 
     //MENU DESCRIPTIONS
     @Override
     public String availabilityText() {
-        return "Available MNK-Games:";
+        return "Verfügbare MNK-Spiele:";
     }
 
     @Override
     public String descriptionMNK() {
-        return "%-15s (%d x %d board, %d in a row, %s gravity)";
+        return "%-15s (%d x %d Spielfeld, %d in Reihe, %s Gravitation)";
     }
 
     @Override
     public String descriptionMNKCustom() {
-        return "%-15s (Allows you to create your own custom MNK-Game)";
+        return "%-15s (Erstelle ein benutzerdefiniertes MNK-Spiel)";
     }
 
     //MISC
     @Override
     public String number() {
-        return "Number";
+        return "Zahl";
     }
 
     @Override
     public String with() {
-        return "with";
+        return "mit";
     }
 
     @Override
     public String without() {
-        return "without";
+        return "ohne";
     }
 
     @Override
@@ -222,12 +222,11 @@ public final class English implements Lang {
 
     @Override
     public String row() {
-        return "ROW";
+        return "ZEI";
     }
 
     @Override
     public String column() {
-        return "COL";
+        return "SPA";
     }
-
 }

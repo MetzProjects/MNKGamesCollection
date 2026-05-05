@@ -59,7 +59,7 @@ The game then runs until one player wins or the board is full. After that, a new
 ### Technical Notes
 
 - Language: Java
-- Version: 1.1 - Language Update
+- Version: 1.1.1 - Language Update Fix
 - Interface: Console / Terminal
 - Minimum board size: 3
 - Maximum board size: 20 
@@ -143,7 +143,7 @@ Danach läuft das Spiel, bis ein Spieler gewinnt oder das Spielfeld voll ist. An
 ### Technische Hinweise
 
 - Programmiersprache: Java
-- Version: 1.1 - Sprach-Update
+- Version: 1.1.1 - Sprach-Update Fix
 - Benutzeroberfläche: Konsole / Terminal
 - Minimale Spielfeldgröße: 3
 - Maximale Spielfeldgröße: 20 

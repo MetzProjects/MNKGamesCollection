@@ -1,7 +1,8 @@
 package com.metzprojects.mnk.engine;
 
 import com.metzprojects.mnk.domain.Board;
-import com.metzprojects.mnk.domain.BoardStyle;
+import com.metzprojects.mnk.ui.i18n.I18n;
+import com.metzprojects.mnk.ui.i18n.TextEncoding;
 import com.metzprojects.mnk.domain.Player;
 import com.metzprojects.mnk.domain.Symbols;
 
@@ -15,12 +16,12 @@ import static com.metzprojects.mnk.ui.i18n.I18n.getCurrentLanguage;
 
 
 public class MNKGame {
-    private final Scanner sc;
+    private final Scanner scanner;
     private Board board;
-    private int reqToWin;
-    private boolean vsBot, gravity;
+    private int requiredToWin;
+    private boolean versusBot, gravity;
     private Player currentMNKPlayer = Player.X;
-    private BoardStyle boardStyle = BoardStyle.UNICODE;
+    private TextEncoding textEncoding = TextEncoding.UNICODE;
 
     //size restrictions can be adjusted below
     //WARNING: LARGE BOARDS MAY CAUSE PROBLEMS WITH VISIBILITY AND RENDERING IN CONSOLE!
@@ -29,38 +30,38 @@ public class MNKGame {
     private static final int MAX_BOARD_SIZE = 20;       //Larger boards are subject to rendering problems in console
 
 
-    public MNKGame(Scanner sc) {
-        this.sc = sc;
+    public MNKGame(Scanner scanner) {
+        this.scanner = scanner;
     }
 
     public void run() {
         while (true) {
             playSingleGame();
-            if (getChoice(getCurrentLanguage().promptPlayAgain(), getCurrentLanguage().yes(), getCurrentLanguage().no(), sc)) {
-                System.out.println(getCurrentLanguage().gameRestarting());
-                this.board = new Board(board.getRows(), board.getColumns());
+            if (getChoice(getCurrentLanguage().promptPlayAgain(), getCurrentLanguage().yes(), getCurrentLanguage().no(), scanner)) {
+                I18n.println(getCurrentLanguage().gameRestarting());
+                this.board = new Board(board.getRows(), board.getCols());
                 currentMNKPlayer = currentMNKPlayer.switchPlayer();
             } else {
-                System.out.println(getCurrentLanguage().gameExit());
+                I18n.println(getCurrentLanguage().gameExit());
                 break;
             }
         }
     }
 
     private void playSingleGame() {
-        printBoard(board, gravity, boardStyle);
-        System.out.printf(getCurrentLanguage().gameStart(), currentMNKPlayer.getIcon());
+        printBoard(board, gravity, textEncoding);
+        I18n.printf(getCurrentLanguage().gameStart(), currentMNKPlayer.getPlayerIcon());
         while (true) {
-            if (vsBot && currentMNKPlayer == Player.O) {
+            if (versusBot && currentMNKPlayer == Player.O) {
                 makeRandomMove(board, gravity);
             } else {
                 setHumanMove();
             }
-            printBoard(board, gravity, boardStyle);
-            final char winner = getWinner(board, reqToWin);
+            printBoard(board, gravity, textEncoding);
+            final char winner = getWinner(board, requiredToWin);
             final boolean full = isBoardFull(board);
             showGameState(winner, full, currentMNKPlayer);
-            if (winner != Symbols.EMPTY || full) break;
+            if (winner != Symbols.EMPTY_CELL || full) break;
             currentMNKPlayer = currentMNKPlayer.switchPlayer();
         }
     }
@@ -69,51 +70,51 @@ public class MNKGame {
         while (true) {
             int row, col;
             if (gravity) {
-                col = getNumber(getCurrentLanguage().promptCol(), 1, board.getColumns(), sc) - 1;
-                if (isValidCol(board, col)) {
+                col = getNumber(getCurrentLanguage().promptCol(), 1, board.getCols(), scanner) - 1;
+                if (isValidColumn(board, col)) {
                     row = getDropRow(board, col);
                     board.setCell(row, col, currentMNKPlayer);
                     break;
                 }
-                System.out.println(getCurrentLanguage().errorColFull());
+                I18n.println(getCurrentLanguage().errorColFull());
             } else {
-                row = getNumber(getCurrentLanguage().promptRow(), 1, board.getRows(), sc) - 1;
-                col = getNumber(getCurrentLanguage().promptCol(), 1, board.getColumns(), sc) - 1;
+                row = getNumber(getCurrentLanguage().promptRow(), 1, board.getRows(), scanner) - 1;
+                col = getNumber(getCurrentLanguage().promptCol(), 1, board.getCols(), scanner) - 1;
                 if (isValidCell(board, row, col)) {
                     board.setCell(row, col, currentMNKPlayer);
                     break;
                 }
-                System.out.println(getCurrentLanguage().errorCellTaken());
+                I18n.println(getCurrentLanguage().errorCellTaken());
             }
         }
     }
 
-    public void setup() {
+    public void setupGame() {
         setBoardSize();
-        setReqToWin(board);
+        setRequiredToWin(board);
         setGravity();
         setVsBot();
     }
 
-    public void setup(int rows, int cols, int reqToWin, boolean gravity) {
+    public void setupGame(int rows, int cols, int requiredToWin, boolean gravity) {
         setBoardSize(rows, cols);
-        setReqToWin(reqToWin);
+        setRequiredToWin(requiredToWin);
         setGravity(gravity);
         setVsBot();
     }
 
-    public void setReqToWin(Board board) {
-        final int maxReqToWin = Math.max(board.getRows(), board.getColumns());
-        this.reqToWin = getNumber(getCurrentLanguage().promptReqToWin(), MIN_REQ_TO_WIN, maxReqToWin, sc);
+    public void setRequiredToWin(Board board) {
+        final int maxReqToWin = Math.max(board.getRows(), board.getCols());
+        this.requiredToWin = getNumber(getCurrentLanguage().promptReqToWin(), MIN_REQ_TO_WIN, maxReqToWin, scanner);
     }
 
-    public void setReqToWin(int reqToWin) {
-        this.reqToWin = reqToWin;
+    public void setRequiredToWin(int requiredToWin) {
+        this.requiredToWin = requiredToWin;
     }
 
     public void setBoardSize() {
-        final int rows = getNumber(getCurrentLanguage().promptSizeRows(), MIN_BOARD_SIZE, MAX_BOARD_SIZE, sc);
-        final int cols = getNumber(getCurrentLanguage().promptSizeCols(), MIN_BOARD_SIZE, MAX_BOARD_SIZE, sc);
+        final int rows = getNumber(getCurrentLanguage().promptSizeRows(), MIN_BOARD_SIZE, MAX_BOARD_SIZE, scanner);
+        final int cols = getNumber(getCurrentLanguage().promptSizeCols(), MIN_BOARD_SIZE, MAX_BOARD_SIZE, scanner);
         this.board = new Board(rows, cols);
     }
 
@@ -122,19 +123,19 @@ public class MNKGame {
     }
 
     public void setVsBot() {
-        this.vsBot = getChoice(getCurrentLanguage().promptPlayBot(), getCurrentLanguage().yes(), getCurrentLanguage().no(), sc);
+        this.versusBot = getChoice(getCurrentLanguage().promptPlayBot(), getCurrentLanguage().yes(), getCurrentLanguage().no(), scanner);
     }
 
     public void setGravity() {
-        this.gravity = getChoice(getCurrentLanguage().promptPlayGravity(), getCurrentLanguage().yes(), getCurrentLanguage().no(), sc);
+        this.gravity = getChoice(getCurrentLanguage().promptPlayGravity(), getCurrentLanguage().yes(), getCurrentLanguage().no(), scanner);
     }
 
-    public void setGravity(boolean isGravityActive) {
-        this.gravity = isGravityActive;
+    public void setGravity(boolean gravity) {
+        this.gravity = gravity;
     }
 
-    public void setBoardStyle(BoardStyle boardStyle) {
-        this.boardStyle = boardStyle;
+    public void setBoardStyle(TextEncoding textEncoding) {
+        this.textEncoding = textEncoding;
     }
 
 

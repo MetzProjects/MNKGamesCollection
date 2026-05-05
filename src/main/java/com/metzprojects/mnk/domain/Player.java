@@ -5,14 +5,14 @@ public enum Player {
     X('X'),
     O('O');
 
-    private final char icon;
+    private final char playerIcon;
 
-    Player(char icon) {
-        this.icon = icon;
+    Player(char playerIcon) {
+        this.playerIcon = playerIcon;
     }
 
-    public char getIcon() {
-        return icon;
+    public char getPlayerIcon() {
+        return playerIcon;
     }
 
     public Player switchPlayer() {

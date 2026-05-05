@@ -34,7 +34,7 @@ class GameLogicTest {
         Board board = new Board(3, 3);
 
         for (int r = 0; r < board.getRows(); r++) {
-            for (int c = 0; c < board.getColumns(); c++) {
+            for (int c = 0; c < board.getCols(); c++) {
                 board.setCell(r, c, ((r + c) % 2 == 0) ? Player.X : Player.O);
             }
         }
@@ -50,7 +50,7 @@ class GameLogicTest {
 
         char winner = GameLogic.getWinner(board, 3);
 
-        assertEquals(Symbols.EMPTY, winner);
+        assertEquals(Symbols.EMPTY_CELL, winner);
     }
 
     @Test
@@ -124,7 +124,7 @@ class GameLogicTest {
 
         char winner = GameLogic.getWinner(board, 3);
 
-        assertEquals(Symbols.EMPTY, winner);
+        assertEquals(Symbols.EMPTY_CELL, winner);
     }
 
     @Test
@@ -139,7 +139,7 @@ class GameLogicTest {
 
         char winner = GameLogic.getWinner(board, 3);
 
-        assertEquals(Symbols.EMPTY, winner);
+        assertEquals(Symbols.EMPTY_CELL, winner);
     }
 
     @Test
@@ -191,7 +191,7 @@ class GameLogicTest {
     void isValidCol_shouldReturnTrue_whenColumnIsEmpty() {
         Board board = new Board(3, 3);
 
-        boolean result = GameLogic.isValidCol(board, 1);
+        boolean result = GameLogic.isValidColumn(board, 1);
 
         assertTrue(result);
     }
@@ -202,7 +202,7 @@ class GameLogicTest {
         board.setCell(3, 2, Player.X);
         board.setCell(2, 2, Player.O);
 
-        boolean result = GameLogic.isValidCol(board, 2);
+        boolean result = GameLogic.isValidColumn(board, 2);
 
         assertTrue(result);
     }
@@ -212,7 +212,7 @@ class GameLogicTest {
         Board board = new Board(3, 3);
         board.setCell(0, 1, Player.X);
 
-        boolean result = GameLogic.isValidCol(board, 1);
+        boolean result = GameLogic.isValidColumn(board, 1);
 
         assertFalse(result);
     }
@@ -221,7 +221,7 @@ class GameLogicTest {
     void isValidCol_shouldReturnFalse_whenColumnIsNegative() {
         Board board = new Board(3, 3);
 
-        boolean result = GameLogic.isValidCol(board, -1);
+        boolean result = GameLogic.isValidColumn(board, -1);
 
         assertFalse(result);
     }
@@ -230,7 +230,7 @@ class GameLogicTest {
     void isValidCol_shouldReturnFalse_whenColumnIsOutsideBoard() {
         Board board = new Board(3, 3);
 
-        boolean result = GameLogic.isValidCol(board, 3);
+        boolean result = GameLogic.isValidColumn(board, 3);
 
         assertFalse(result);
     }

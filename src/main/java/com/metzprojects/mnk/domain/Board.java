@@ -4,25 +4,25 @@ public final class Board {
 
     private final char[][] field;
     private final int rows;
-    private final int columns;
+    private final int cols;
 
-    public Board(int rows, int columns) {
+    public Board(int rows, int cols) {
         this.rows = rows;
-        this.columns = columns;
-        this.field = new char[rows][columns];
+        this.cols = cols;
+        this.field = new char[rows][cols];
         emptyField();
     }
 
     public void emptyField() {
         for (int i = 0; i < this.rows; i++) {
-            for (int j = 0; j < this.columns; j++) {
-                this.field[i][j] = Symbols.EMPTY;
+            for (int j = 0; j < this.cols; j++) {
+                this.field[i][j] = Symbols.EMPTY_CELL;
             }
         }
     }
 
     public void setCell(int row, int col, Player player) {
-        this.field[row][col] = player.getIcon();
+        this.field[row][col] = player.getPlayerIcon();
     }
 
     public char getCell(int row, int col) {
@@ -33,8 +33,8 @@ public final class Board {
         return rows;
     }
 
-    public int getColumns() {
-        return columns;
+    public int getCols() {
+        return cols;
     }
 
 }

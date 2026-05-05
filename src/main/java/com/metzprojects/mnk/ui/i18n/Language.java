@@ -1,7 +1,6 @@
-package com.metzprojects.mnk.domain;
+package com.metzprojects.mnk.ui.i18n;
 
 public enum Language {
     GERMAN,
     ENGLISH
-
 }

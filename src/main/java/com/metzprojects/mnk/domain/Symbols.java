@@ -4,5 +4,5 @@ public final class Symbols {
     private Symbols() {
     }
 
-    public static final char EMPTY = ' ';
+    public static final char EMPTY_CELL = ' ';
 }

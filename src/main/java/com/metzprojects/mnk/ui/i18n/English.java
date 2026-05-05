@@ -1,6 +1,6 @@
 package com.metzprojects.mnk.ui.i18n;
 
-public final class English implements Lang {
+public final class English implements Text {
 
     //PROMPTS
     @Override
@@ -37,17 +37,17 @@ public final class English implements Lang {
     public String promptLanguage() {
         return """
                 
-                Select language:
+                Please select a language:
                 1) English (Englisch)
                 2) German (Deutsch)
                 """;
     }
 
     @Override
-    public String promptBoardStyle() {
+    public String promptEncoding() {
         return """
                 
-                Choose board style:
+                Please choose a text encoding::
                 1) Unicode (Default - Recommended)
                 2) ASCII (Choose this if you experience problems with displaying Unicode)
                 """;
@@ -169,8 +169,8 @@ public final class English implements Lang {
     }
 
     @Override
-    public String settingsBoardText() {
-        return "Board Appearance";
+    public String settingsEncodingText() {
+        return "Appearance";
     }
 
     @Override

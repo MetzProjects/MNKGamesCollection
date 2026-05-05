@@ -8,13 +8,13 @@ public enum GameType {
     CONNECT_FOUR(6, 7, 4, true),
     CUSTOM(0, 0, 0, false);
 
-    private final int rows, cols, reqToWin;
+    private final int rows, cols, requiredToWin;
     private final boolean gravity;
 
-    GameType(int rows, int cols, int reqToWin, boolean gravity) {
+    GameType(int rows, int cols, int requiredToWin, boolean gravity) {
         this.rows = rows;
         this.cols = cols;
-        this.reqToWin = reqToWin;
+        this.requiredToWin = requiredToWin;
         this.gravity = gravity;
     }
 
@@ -33,7 +33,7 @@ public enum GameType {
         }
         return String.format(getCurrentLanguage().descriptionMNK(),
                 displayName(),
-                rows, cols, reqToWin,
+                rows, cols, requiredToWin,
                 gravity ? getCurrentLanguage().with() : getCurrentLanguage().without()
         );
     }
@@ -46,8 +46,8 @@ public enum GameType {
         return cols;
     }
 
-    public int getReqToWin() {
-        return reqToWin;
+    public int getRequiredToWin() {
+        return requiredToWin;
     }
 
     public boolean isGravity() {

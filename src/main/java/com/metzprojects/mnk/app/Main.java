@@ -1,11 +1,12 @@
 package com.metzprojects.mnk.app;
 
-import com.metzprojects.mnk.domain.Language;
+import com.metzprojects.mnk.ui.i18n.Language;
 import com.metzprojects.mnk.domain.MenuAction;
 import com.metzprojects.mnk.engine.MNKGame;
 import com.metzprojects.mnk.domain.GameType;
 import com.metzprojects.mnk.ui.console.Menu;
 import com.metzprojects.mnk.ui.i18n.I18n;
+import com.metzprojects.mnk.ui.i18n.TextEncoding;
 
 import static com.metzprojects.mnk.ui.i18n.I18n.getCurrentLanguage;
 
@@ -13,28 +14,30 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        final Scanner sc = new Scanner(System.in);
-        final MNKGame game = new MNKGame(sc);
+        final Scanner scanner = new Scanner(System.in);
+        final MNKGame game = new MNKGame(scanner);
 
         do {
-            Object choice = Menu.getMenuChoice(sc);
+            Object choice = Menu.getMenuChoice(scanner);
 
             if (choice instanceof MenuAction action) {
                 switch (action) {
-                    case EXIT_GAME -> {
-                        System.out.println(getCurrentLanguage().gameGoodbye());
-                        sc.close();
-                        return;
-                    }
-                    case SETTINGS_BOARD -> {
-                        game.setBoardStyle(Menu.getBoardStyle(sc));
+                    case DISPLAY_SETTINGS -> {
+                        TextEncoding encoding = Menu.getBoardStyle(scanner);
+                        game.setBoardStyle(encoding);
+                        I18n.setEncoding(encoding);
                         continue;
                     }
                     case LANGUAGE -> {
-                        Language lang = Menu.getLanguage(sc);
+                        Language lang = Menu.getLanguage(scanner);
                         if (lang == Language.ENGLISH) I18n.setEnglish();
                         else I18n.setGerman();
                         continue;
+                    }
+                    case EXIT_GAME -> {
+                        I18n.println(getCurrentLanguage().gameGoodbye());
+                        scanner.close();
+                        return;
                     }
                 }
             }
@@ -42,9 +45,9 @@ public class Main {
             GameType type = (GameType) choice;
 
             if (type == GameType.CUSTOM) {
-                game.setup();
+                game.setupGame();
             } else {
-                game.setup(type.getRows(), type.getCols(), type.getReqToWin(), type.isGravity());
+                game.setupGame(type.getRows(), type.getCols(), type.getRequiredToWin(), type.isGravity());
             }
 
             game.run();

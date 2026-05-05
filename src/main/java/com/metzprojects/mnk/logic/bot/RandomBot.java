@@ -19,14 +19,14 @@ public final class RandomBot {
         while (true) {
 
             if (gravity) {
-                col = ThreadLocalRandom.current().nextInt(0, board.getColumns());
-                if (isValidCol(board, col)) {
+                col = ThreadLocalRandom.current().nextInt(0, board.getCols());
+                if (isValidColumn(board, col)) {
                     row = getDropRow(board, col);
                     break;
                 }
             } else {
                 row = ThreadLocalRandom.current().nextInt(0, board.getRows());
-                col = ThreadLocalRandom.current().nextInt(0, board.getColumns());
+                col = ThreadLocalRandom.current().nextInt(0, board.getCols());
                 if (isValidCell(board, row, col)) break;
             }
         }

@@ -1,6 +1,6 @@
 package com.metzprojects.mnk.ui.i18n;
 
-public interface Lang {
+public interface Text {
 
     //PROMPTS
     String promptGameType();
@@ -17,7 +17,7 @@ public interface Lang {
 
     String promptLanguage();
 
-    String promptBoardStyle();
+    String promptEncoding();
 
     //[Y/N] OPTIONS
     String yes();
@@ -69,7 +69,7 @@ public interface Lang {
 
     String gameModeCustom();
 
-    String settingsBoardText();
+    String settingsEncodingText();
 
     String language();
 

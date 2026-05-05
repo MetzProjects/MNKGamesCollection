@@ -1,6 +1,6 @@
 package com.metzprojects.mnk.ui.i18n;
 
-public final class German implements Lang {
+public final class German implements Text {
 
     //PROMPTS
     @Override
@@ -37,17 +37,17 @@ public final class German implements Lang {
     public String promptLanguage() {
         return """
                 
-                Wähle eine Sprache aus:
+                Bitte wähle eine Sprache aus:
                 1) Englisch (English)
                 2) Deutsch (German)
                 """;
     }
 
     @Override
-    public String promptBoardStyle() {
+    public String promptEncoding() {
         return """
                 
-                Wähle einen Spielfeld-Stil aus:
+                Bitte wähle eine Zeichenkodierung aus:
                 1) Unicode (Standard - Empfohlen)
                 2) ASCII (Empfohlen bei Problemen mit Unicode)
                 """;
@@ -169,8 +169,8 @@ public final class German implements Lang {
     }
 
     @Override
-    public String settingsBoardText() {
-        return "Spielfeld-Optionen";
+    public String settingsEncodingText() {
+        return "Anzeige-Optionen";
     }
 
     @Override
